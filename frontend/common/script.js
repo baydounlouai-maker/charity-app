@@ -9,6 +9,22 @@ const API_URL = 'http://localhost:3001/api';
   document.head.appendChild(link);
 })();
 
+/* ── Avatar gradient ─────────────────────────────────────── */
+const _AVATAR_GRADIENTS = [
+  'linear-gradient(135deg,#667eea,#764ba2)',
+  'linear-gradient(135deg,#f093fb,#f5576c)',
+  'linear-gradient(135deg,#4facfe,#00f2fe)',
+  'linear-gradient(135deg,#43e97b,#38f9d7)',
+  'linear-gradient(135deg,#fa709a,#fee140)',
+  'linear-gradient(135deg,#a18cd1,#fbc2eb)',
+  'linear-gradient(135deg,#fccb90,#d57eeb)',
+  'linear-gradient(135deg,#e0c3fc,#8ec5fc)',
+];
+function getAvatarGradient(name) {
+  const code = (name || ' ').charAt(0).toUpperCase().charCodeAt(0);
+  return _AVATAR_GRADIENTS[code % _AVATAR_GRADIENTS.length];
+}
+
 /* ── User session ─────────────────────────────────────────── */
 function getUser() {
   try { return JSON.parse(localStorage.getItem('uc_user')); } catch { return null; }
