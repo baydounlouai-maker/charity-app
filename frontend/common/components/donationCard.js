@@ -44,7 +44,7 @@ function renderDonationCard(donation, userRoles = []) {
 
   const donorLabel = isCharity
     ? `<span>By <strong>${donation.donor_username || '—'}</strong></span>`
-    : `<span>Submitted ${formatDate(donation.donation_date)}</span>`;
+    : `<span style="font-size:var(--text-xs);color:var(--clr-text-muted)">Submitted ${formatDate(donation.donation_date)}</span>`;
 
   return `
     <div class="donation-card" id="donation-${donation.id}">

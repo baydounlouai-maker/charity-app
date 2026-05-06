@@ -9,6 +9,8 @@ let currentPage = 1;
 document.addEventListener('DOMContentLoaded', () => {
   initHeader('discover');
   initFooter();
+  const preCategory = getQueryParam('category');
+  if (preCategory) document.getElementById('filterCategory').value = preCategory;
   loadEvents();
 
   document.getElementById('applyFilter').addEventListener('click', () => { currentPage = 1; loadEvents(); });

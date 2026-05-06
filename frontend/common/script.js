@@ -1,5 +1,14 @@
 const API_URL = 'http://localhost:3001/api';
 
+/* ── Favicon injection ────────────────────────────────────── */
+(function() {
+  const link = document.createElement('link');
+  link.rel  = 'icon';
+  link.type = 'image/svg+xml';
+  link.href = '/favicon.svg';
+  document.head.appendChild(link);
+})();
+
 /* ── User session ─────────────────────────────────────────── */
 function getUser() {
   try { return JSON.parse(localStorage.getItem('uc_user')); } catch { return null; }

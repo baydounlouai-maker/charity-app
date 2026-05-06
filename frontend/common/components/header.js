@@ -29,10 +29,14 @@ function renderHeader(activePage = '') {
       <a href="/pages/create-event/create-event.html" class="dropdown-item">Create Event</a>
       <hr class="dropdown-divider">` : '';
 
+    const displayName = user.charity_name || user.username;
+    const initial     = displayName.charAt(0).toUpperCase();
+
     userSection = `
       <div class="header-user">
         <button class="header-username" id="userMenuBtn">
-          ${user.charity_name || user.username} <span class="caret">▾</span>
+          <span class="header-avatar">${initial}</span>
+          ${displayName} <span class="caret">▾</span>
         </button>
         <div class="user-dropdown" id="userDropdown">
           ${charityLinks}${profileLinks}
