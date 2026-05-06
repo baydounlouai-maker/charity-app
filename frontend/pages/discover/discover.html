@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Discover Events · United Charity</title>
+  <link rel="stylesheet" href="/common/style.css" />
+</head>
+<body>
+  <div id="app-header"></div>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-header">
+        <h1>Discover Events</h1>
+        <p>Browse approved charity events and make your contribution.</p>
+      </div>
+
+      <div class="filter-bar">
+        <div class="field">
+          <label>Search</label>
+          <input type="text" id="filterSearch" placeholder="Charity or event description…" />
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <select id="filterCategory">
+            <option value="">All Categories</option>
+            <option>Money</option>
+            <option>Food</option>
+            <option>Clothes</option>
+            <option>Medical</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Urgency</label>
+          <select id="filterUrgency">
+            <option value="">All Urgencies</option>
+            <option>Critical</option>
+            <option>High</option>
+            <option>Standard</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Sort by</label>
+          <select id="filterSort">
+            <option value="date-asc">Soonest first</option>
+            <option value="date-desc">Latest first</option>
+            <option value="urgency">Urgency</option>
+            <option value="progress-asc">Most needed</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button class="btn btn-primary" id="applyFilter">Apply</button>
+          <button class="btn btn-ghost" id="clearFilter">Clear</button>
+        </div>
+      </div>
+
+      <div id="results-info" class="text-muted text-sm mb-4"></div>
+      <div id="events-grid" class="grid-3">
+        <div class="loading-spinner"><div class="spinner"></div><span>Loading events…</span></div>
+      </div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="/common/script.js"></script>
+  <script src="/common/components/toast.js"></script>
+  <script src="/common/components/header.js"></script>
+  <script src="/common/components/footer.js"></script>
+  <script src="/common/components/eventCard.js"></script>
+  <script src="discover.js"></script>
+</body>
+</html>

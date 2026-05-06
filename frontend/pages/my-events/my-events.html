@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>My Events · United Charity</title>
+  <link rel="stylesheet" href="/common/style.css" />
+</head>
+<body>
+  <div id="app-header"></div>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-header flex-between">
+        <div>
+          <h1>My Events</h1>
+          <p>Manage your charity events.</p>
+        </div>
+        <a href="/pages/create-event/create-event.html" class="btn btn-primary">+ Create Event</a>
+      </div>
+      <div id="events-grid" class="grid-3">
+        <div class="loading-spinner"><div class="spinner"></div><span>Loading…</span></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="/common/script.js"></script>
+  <script src="/common/components/toast.js"></script>
+  <script src="/common/components/header.js"></script>
+  <script src="/common/components/footer.js"></script>
+  <script src="/common/components/eventCard.js"></script>
+  <script src="my-events.js"></script>
+</body>
+</html>

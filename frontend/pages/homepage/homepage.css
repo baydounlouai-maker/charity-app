@@ -1,0 +1,113 @@
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #1a3f7a 60%, #0f2952 100%);
+  color: #fff;
+  padding: var(--sp-20) var(--sp-6) var(--sp-16);
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.9);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semi);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--sp-5);
+}
+.hero-content { max-width: 680px; margin-inline: auto; }
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--fw-bold);
+  line-height: 1.15;
+  margin-bottom: var(--sp-5);
+  color: #fff;
+}
+.hero-content p {
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,.8);
+  margin-bottom: var(--sp-8);
+  line-height: var(--lh-relaxed);
+}
+.hero-actions { display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; }
+.btn-hero-outline {
+  border: 2px solid rgba(255,255,255,.45);
+  color: #fff;
+  background: transparent;
+}
+.btn-hero-outline:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.7); }
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  margin-top: var(--sp-12);
+}
+.stat-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-5) var(--sp-8);
+  text-align: center;
+  min-width: 140px;
+}
+.stat-num   { font-size: var(--text-3xl); font-weight: var(--fw-bold); color: #fff; margin-bottom: var(--sp-1); }
+.stat-label { font-size: var(--text-sm); color: rgba(255,255,255,.65); }
+
+/* ── Goals ────────────────────────────────────────────────── */
+.goals { background: var(--clr-bg); padding: var(--sp-20) 0; }
+.section-header { margin-bottom: var(--sp-12); }
+.section-header h2 { color: var(--clr-primary); font-size: var(--text-3xl); margin-bottom: var(--sp-4); }
+.section-underline { width: 50px; height: 4px; background: var(--clr-accent); border-radius: var(--radius-full); margin: 0 auto var(--sp-5); }
+.section-sub { font-size: var(--text-lg); color: var(--clr-text-muted); max-width: 520px; margin-inline: auto; }
+
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--sp-6);
+}
+.goal-card {
+  background: var(--clr-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--clr-border);
+  transition: box-shadow var(--transition-md), transform var(--transition-md);
+}
+.goal-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.goal-icon { font-size: 2.5rem; margin-bottom: var(--sp-4); }
+.goal-card h3 { font-size: var(--text-lg); color: var(--clr-primary); margin-bottom: var(--sp-3); }
+.goal-card p  { font-size: var(--text-sm); color: var(--clr-text-muted); line-height: var(--lh-relaxed); }
+
+/* ── CTA Section ──────────────────────────────────────────── */
+.cta-section { background: var(--clr-surface); padding: var(--sp-16) 0; }
+.cta-box {
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #1a3f7a 100%);
+  border-radius: var(--radius-2xl);
+  padding: var(--sp-12) var(--sp-10);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-8);
+  flex-wrap: wrap;
+}
+.cta-content h2 { color: #fff; font-size: var(--text-2xl); margin-bottom: var(--sp-3); }
+.cta-content p  { color: rgba(255,255,255,.75); }
+.cta-actions { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+.cta-browse {
+  border: 2px solid rgba(255,255,255,.4);
+  color: #fff;
+  background: transparent;
+}
+.cta-browse:hover { background: rgba(255,255,255,.12); }
+
+@media (max-width: 640px) {
+  .hero { padding: var(--sp-16) var(--sp-4) var(--sp-12); }
+  .cta-box { flex-direction: column; text-align: center; padding: var(--sp-8); }
+  .cta-actions { justify-content: center; }
+}

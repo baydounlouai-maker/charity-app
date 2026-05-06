@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Sign Up · United Charity</title>
+  <link rel="stylesheet" href="/common/style.css" />
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body class="auth-page">
+
+  <a href="/pages/homepage/homepage.html" class="auth-brand">♡ United Charity</a>
+
+  <div class="auth-container signup-container">
+    <div class="auth-card">
+      <h1>Join the community</h1>
+      <p class="auth-subtitle">Start your high-impact journey today.</p>
+
+      <div id="form-error" class="alert alert-danger" style="display:none"></div>
+
+      <form id="signup-form">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Choose a username" autocomplete="username" required />
+        </div>
+
+        <div class="field password-field">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="password" placeholder="At least 8 characters" autocomplete="new-password" required />
+            <button type="button" class="toggle-visibility" id="toggleBtn" aria-label="Toggle password">
+              <svg class="icon-show" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="icon-hide" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="role-selector">
+          <span class="role-selector-label">I want to join as a:</span>
+          <div class="role-options">
+            <button type="button" class="role-btn" id="roleDonor">
+              <span class="role-btn-icon">💝</span>
+              <span>Donor</span>
+            </button>
+            <button type="button" class="role-btn" id="roleCharity">
+              <span class="role-btn-icon">🏛️</span>
+              <span>Charity</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="charity-fields" id="charityFields" style="display:none">
+          <span class="charity-fields-label">Charity Information</span>
+          <div class="field">
+            <label for="charityName">Charity Name <span style="color:var(--clr-danger)">*</span></label>
+            <input type="text" id="charityName" placeholder="Official charity name" />
+          </div>
+          <div class="field">
+            <label for="charityDesc">Description</label>
+            <textarea id="charityDesc" placeholder="Tell donors about your charity's mission…" rows="3"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Create Account</button>
+      </form>
+
+      <p class="auth-link">Already have an account? <a href="/pages/login/login.html">Log in</a></p>
+    </div>
+  </div>
+
+  <script src="/common/script.js"></script>
+  <script src="signup.js"></script>
+</body>
+</html>

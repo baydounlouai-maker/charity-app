@@ -6,7 +6,7 @@ const pool = require('../config/db');
 router.get('/me', requireAuth, async (req, res) => {
   try {
     const [users] = await pool.execute(
-      'SELECT id, username, email, created_at FROM users WHERE id = ?',
+      'SELECT id, username, charity_name, charity_description, created_at FROM users WHERE id = ?',
       [req.userId]
     );
     const [roleRows] = await pool.execute(

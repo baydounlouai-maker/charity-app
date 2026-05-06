@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Donate · United Charity</title>
+  <link rel="stylesheet" href="/common/style.css" />
+</head>
+<body>
+  <div id="app-header"></div>
+
+  <main class="page-main">
+    <div class="container" style="max-width:560px">
+      <div id="event-summary" class="detail-card mb-6" style="display:none"></div>
+
+      <div class="auth-card">
+        <h1 style="color:var(--clr-primary);margin-bottom:var(--sp-2)">Make a Donation</h1>
+        <p class="auth-subtitle">Your contribution makes a real difference.</p>
+
+        <div id="form-error" class="alert alert-danger" style="display:none"></div>
+
+        <form id="donate-form">
+          <div class="field">
+            <label for="donated_units">Number of Units <span style="color:var(--clr-danger)">*</span></label>
+            <input type="number" id="donated_units" min="1" placeholder="e.g. 5" required />
+            <div class="field-hint" id="units-hint"></div>
+          </div>
+          <div class="field">
+            <label for="description">Note <span style="color:var(--clr-danger)">*</span></label>
+            <textarea id="description" placeholder="Describe what you're donating…" required></textarea>
+          </div>
+          <div class="field">
+            <label for="pickup_address" style="display:flex;align-items:center;justify-content:space-between">
+              Pickup Address <span style="color:var(--clr-danger)">*</span>
+              <a id="addAddressBtn" href="#" class="btn btn-ghost btn-sm" style="padding:0 var(--sp-2);line-height:1.6;font-size:var(--text-sm)">+ Add</a>
+            </label>
+            <select id="pickup_address" required>
+              <option value="">None</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pickup_datetime">Pickup Date &amp; Time <span style="color:var(--clr-danger)">*</span></label>
+            <input type="datetime-local" id="pickup_datetime" required />
+          </div>
+          <div style="display:flex;gap:var(--sp-3)">
+            <a id="backBtn" href="#" class="btn btn-ghost btn-full">Cancel</a>
+            <button type="submit" class="btn btn-accent btn-full" id="submitBtn">Submit Donation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="/common/script.js"></script>
+  <script src="/common/components/toast.js"></script>
+  <script src="/common/components/header.js"></script>
+  <script src="/common/components/footer.js"></script>
+  <script src="donate.js"></script>
+</body>
+</html>

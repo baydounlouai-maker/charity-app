@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Event Management · United Charity</title>
+  <link rel="stylesheet" href="/common/style.css" />
+</head>
+<body>
+  <div id="app-header"></div>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-header">
+        <h1>Event Management</h1>
+        <p>Review and approve or reject charity event submissions.</p>
+      </div>
+
+      <div class="filter-bar">
+        <div class="field">
+          <label>Status</label>
+          <select id="filterStatus">
+            <option value="">All Statuses</option>
+            <option value="Pending" selected>Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <select id="filterCategory">
+            <option value="">All</option>
+            <option>Money</option><option>Food</option><option>Clothes</option><option>Medical</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Search</label>
+          <input type="text" id="filterSearch" placeholder="Charity or event…" />
+        </div>
+        <div class="filter-actions">
+          <button class="btn btn-primary" id="applyFilter">Apply</button>
+          <button class="btn btn-ghost" id="clearFilter">Clear</button>
+        </div>
+      </div>
+
+      <div id="results-info" class="text-muted text-sm mb-4"></div>
+      <div class="table-wrapper">
+        <table class="data-table" id="events-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Charity</th>
+              <th>Category</th>
+              <th>Urgency</th>
+              <th>Event Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="events-tbody">
+            <tr><td colspan="7" style="text-align:center;padding:2rem"><div class="spinner" style="margin:0 auto"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="/common/script.js"></script>
+  <script src="/common/components/toast.js"></script>
+  <script src="/common/components/header.js"></script>
+  <script src="/common/components/footer.js"></script>
+  <script src="event-management.js"></script>
+</body>
+</html>

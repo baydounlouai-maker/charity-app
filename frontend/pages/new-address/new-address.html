@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Add Address · United Charity</title>
+  <link rel="stylesheet" href="/common/style.css" />
+</head>
+<body>
+  <div id="app-header"></div>
+
+  <main class="page-main">
+    <div class="container" style="max-width:540px">
+      <div class="auth-card">
+        <h1 style="color:var(--clr-primary);margin-bottom:var(--sp-2)">Add Address</h1>
+        <p class="auth-subtitle">Save an address to your profile for quick access.</p>
+
+        <div id="form-error" class="alert alert-danger" style="display:none"></div>
+
+        <form id="addr-form">
+          <div class="field">
+            <label for="label">Label <span style="color:var(--clr-danger)">*</span></label>
+            <input type="text" id="label" placeholder="e.g. Main Office, Warehouse" required />
+          </div>
+          <div class="field">
+            <label for="street">Street <span style="color:var(--clr-danger)">*</span></label>
+            <input type="text" id="street" placeholder="123 Main St" required />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="city">City <span style="color:var(--clr-danger)">*</span></label>
+              <input type="text" id="city" placeholder="City" required />
+            </div>
+            <div class="field">
+              <label for="state">State / Region</label>
+              <input type="text" id="state" placeholder="Optional" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="zip">ZIP / Postal Code</label>
+              <input type="text" id="zip" placeholder="Optional" />
+            </div>
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" value="Lebanon" disabled />
+            </div>
+          </div>
+          <div style="display:flex;gap:var(--sp-3)">
+            <a href="/pages/addresses/addresses.html" class="btn btn-ghost btn-full">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Save Address</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="/common/script.js"></script>
+  <script src="/common/components/toast.js"></script>
+  <script src="/common/components/header.js"></script>
+  <script src="/common/components/footer.js"></script>
+  <script src="new-address.js"></script>
+</body>
+</html>

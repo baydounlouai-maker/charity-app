@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Charities · United Charity</title>
+  <link rel="stylesheet" href="/common/style.css" />
+</head>
+<body>
+  <div id="app-header"></div>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-header">
+        <h1>Charities</h1>
+        <p>Discover the organizations making a difference.</p>
+      </div>
+
+      <div class="filter-bar">
+        <div class="field" style="flex:1">
+          <label>Search charities</label>
+          <input type="text" id="filterSearch" placeholder="Charity name…" />
+        </div>
+        <div class="filter-actions">
+          <button class="btn btn-primary" id="applyFilter">Search</button>
+          <button class="btn btn-ghost"   id="clearFilter">Clear</button>
+        </div>
+      </div>
+
+      <div id="charities-grid" class="grid-3">
+        <div class="loading-spinner"><div class="spinner"></div><span>Loading charities…</span></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="/common/script.js"></script>
+  <script src="/common/components/toast.js"></script>
+  <script src="/common/components/header.js"></script>
+  <script src="/common/components/footer.js"></script>
+  <script src="/common/components/charityCard.js"></script>
+  <script src="charities.js"></script>
+</body>
+</html>

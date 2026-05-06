@@ -31,13 +31,8 @@ services:
 
   frontend:
     build: ./frontend
-    environment:
-      VITE_API_TARGET: http://backend:3001
-    volumes:
-      - ./frontend/src:/app/src        # mount source so edits reach the container
-      - ./frontend/index.html:/app/index.html
     ports:
-      - "5173:5173"
+      - "5173:80"
     depends_on:
       - backend
 
