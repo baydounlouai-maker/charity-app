@@ -64,8 +64,5 @@ Seeded automatically on first run. Admin password can be overridden with `ADMIN_
 |---|---|---|
 | Admin | `admin` | `admin` |
 | Charity | `hopefoundation` | `demo` |
-| Charity | `greenliving` | `demo` |
-| Charity | `sunriserelief` | `demo` |
 | Donor | `marc_gives` | `demo` |
-| Donor | `sarah_d` | `demo` |
 
