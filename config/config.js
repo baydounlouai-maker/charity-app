@@ -10,7 +10,7 @@ const CONFIG = {
     },
     ADMIN_USERNAME: 'admin',
     ADMIN_PASSWORD: 'admin',
-    DEMO_USERS_PASSWORD: 'demo123',
+    DEMO_USERS_PASSWORD: 'demo',
 };
 
 export default CONFIG;

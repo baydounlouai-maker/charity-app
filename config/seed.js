@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const pool   = require('./config/db');
-const { default: CONFIG } = require('./config/config');
+const pool   = require('./db');
+const { default: CONFIG } = require('./config');
 
 const ADMIN_USERNAME = CONFIG.ADMIN_USERNAME;
 const ADMIN_PASSWORD = CONFIG.ADMIN_PASSWORD;
@@ -71,7 +71,7 @@ async function seed() {
     charity_description: 'A grassroots network of volunteers providing direct relief — food, shelter kits, and hygiene packs — to families in crisis.',
   }, charityRole.id);
 
-  console.log('[seed] 6 charity users created  →  password: demo123');
+  console.log(`[seed] 6 charity users created  →  password: ${DEMO_PASSWORD}`);
 
   /* ── Donors ─────────────────────────────────────────────── */
   const johnId = await insertUser({
@@ -89,7 +89,7 @@ async function seed() {
     password: demoHashed,
   }, donorRole.id);
 
-  console.log('[seed] 3 donor users created  →  password: demo123');
+  console.log(`[seed] 3 donor users created  →  password: ${DEMO_PASSWORD}`);
 
   /* ── Addresses ──────────────────────────────────────────── */
   const hopeAddr1 = await insertAddress(hopeId,  'Main Office',         '45 Rue de la Paix',   'Beirut',  null,       null,    'Lebanon');
@@ -504,8 +504,8 @@ async function seed() {
 
   console.log('[seed] donations created');
   console.log('[seed] ─────────────────────────────────────────────');
-  console.log('[seed] Demo accounts (all password: demo123)');
-  console.log('[seed]   Admin    →  username: admin             pw: admin123');
+  console.log(`[seed] Demo accounts (all password: ${DEMO_PASSWORD})`);
+  console.log('[seed]   Admin    →  username: admin             pw: ' + ADMIN_PASSWORD);
   console.log('[seed]   Charity  →  username: hopefoundation');
   console.log('[seed]   Charity  →  username: greenliving');
   console.log('[seed]   Charity  →  username: bridgeofhope');

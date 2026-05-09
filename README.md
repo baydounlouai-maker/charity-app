@@ -13,32 +13,19 @@ A platform connecting donors with charity events. Charities post fundraising eve
 - [Node.js 20+](https://nodejs.org/)
 - MySQL 8.0+
 
-**Install MySQL on Ubuntu/Debian:**
-
-```bash
-sudo apt install mysql-server
-sudo systemctl start mysql
-sudo systemctl enable mysql   # auto-start on boot
-sudo mysql_secure_installation
-```
-
 ### 1. Create the database
 
-```bash
-mysql -u root -p < backend/init.sql
-```
-
-This creates the `char_app` database, all tables, and seeds the default roles.
+In MySQL, creates the `char_app` database.
 
 ### 2. Configure the connection
 
-Edit `backend/config/config.js` and set your MySQL credentials:
+Edit `config/config.js` and set your MySQL credentials:
 
 ```js
 DB: {
     host: 'localhost',
-    user: 'root',
-    password: 'your_mysql_password',
+    user: 'root',                       // <--- your mysql server user
+    password: 'your_mysql_password',    // <--- your mysql server password
     database: 'char_app',
     ...
 }
@@ -46,19 +33,26 @@ DB: {
 
 ### 3. Install backend dependencies
 
+In the root of the project, run:
+
 ```bash
-cd backend
-npm install
+npm run install
 ```
 
 ### 4. Start the server
+
+In the root of the project, run:
 
 ```bash
 npm start
 ```
 
-The server starts at **http://localhost:3001** and serves both the API and the frontend.
-Demo data is seeded automatically on the first run.
+The server starts at **http://localhost:3001** by default and serves both the API and the frontend.
+Database initialization and demo data is seeded automatically on the first run.
+
+#### Note
+
+If port `3001` is blocked or already used in your machine, you can change the port to use inside `config/config.js` and then change it to the new port when you open the **http://localhost:<new-port>** site in your browser.
 
 ---
 
