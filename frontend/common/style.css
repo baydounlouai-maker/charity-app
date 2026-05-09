@@ -318,12 +318,23 @@ h4 { font-size: var(--text-lg);  font-weight: var(--fw-semi); }
 
 /* List Card (address / contact) */
 .list-card {
+  position: relative;
   background: var(--clr-surface); border-radius: var(--radius-lg);
   border: 1px solid var(--clr-border); padding: var(--sp-5);
   display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-4);
 }
 .list-card-content h4 { font-weight: var(--fw-semi); margin-bottom: var(--sp-1); }
 .list-card-content p  { font-size: var(--text-sm); color: var(--clr-text-muted); line-height: var(--lh-relaxed); }
+.list-card-delete {
+  position: absolute; top: var(--sp-3); right: var(--sp-3);
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0;
+  background: transparent; border: none; border-radius: var(--radius-md);
+  color: var(--clr-text-muted); cursor: pointer;
+  transition: color var(--transition-sm), background var(--transition-sm);
+}
+.list-card-delete:hover:not(:disabled) { color: var(--clr-danger); background: var(--clr-danger-bg); }
+.list-card-delete:disabled { opacity: .4; cursor: not-allowed; }
 
 /* ============================================================
    HEADER
