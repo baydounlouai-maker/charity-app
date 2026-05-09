@@ -36,7 +36,7 @@ DB: {
 In the root of the project, run:
 
 ```bash
-npm run install
+npm install
 ```
 
 ### 4. Start the server
