@@ -1,4 +1,7 @@
 const user = requireAuth();
+const isAdmin   = user?.roles?.includes('Admin');
+const isCharity = user?.roles?.includes('Charity');
+const isDonor   = user?.roles?.includes('Donor');
 const eventId = getQueryParam('id');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,16 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadEvent() {
   try {
-    const [event, donations] = await Promise.allSettled([
-      api('/requests/' + eventId),
-      user ? api('/donations/request/' + eventId) : Promise.reject(),
-    ]);
+    const event = await api('/requests/' + eventId);
+    if (!event) throw new Error('Event not found');
 
-    const ev = event.value;
-    if (!ev) throw new Error('Event not found');
+    const isMyEvent = isCharity && event.charity?.id === user.userId;
+    let donations = null;
+    if (isMyEvent) {
+      donations = await api('/donations/request/' + eventId);
+    } else if (isDonor) {
+      const requestDonations = await api('/donations/request/' + eventId);
+      donations = requestDonations.filter(d => d.user_id === user.userId);
+    }
 
-    const donationList = donations.status === 'fulfilled' ? donations.value : null;
-    renderPage(ev, donationList);
+    renderPage(event, donations);
   } catch (err) {
     document.getElementById('page-content').innerHTML = `
       <div class="empty-state"><div class="empty-state-icon">⚠️</div><h3>Failed to load event</h3><p>${err.message}</p></div>`;
@@ -28,10 +34,6 @@ async function loadEvent() {
 
 function renderPage(ev, donations) {
   const pct = progressPct(ev.units_donated, ev.required_units);
-  const isAdmin   = user?.roles?.includes('Admin');
-  const isCharity = user?.roles?.includes('Charity');
-  const isDonor   = user?.roles?.includes('Donor');
-  const isOwner   = isCharity && user?.userId == ev.charity?.id;
 
   // Admin bar for pending events
   const adminBar = isAdmin && ev.status === 'Pending' ? `
@@ -50,7 +52,7 @@ function renderPage(ev, donations) {
     </a>` : '';
 
   // Donations section — only the owning charity sees it
-  const donationsSection = isOwner && donations ? renderDonationsSection(donations) : '';
+  const donationsSection = renderDonationsSection(donations);
 
   document.getElementById('page-content').innerHTML = `
     ${adminBar}
@@ -124,8 +126,10 @@ function renderPage(ev, donations) {
 }
 
 function renderDonationsSection(donations) {
+  if (donations === null) return '';
+  const sectionTitle = isDonor ? 'My Donations' : 'Donations';
   if (!donations.length) {
-    return `<div class="detail-card"><div class="detail-card-title">Donations (0)</div><p class="text-muted text-sm">No donations yet.</p></div>`;
+    return `<div class="detail-card"><div class="detail-card-title">${sectionTitle} (0)</div><p class="text-muted text-sm">No donations yet.</p></div>`;
   }
   const rows = donations.map(d => `
     <tr id="don-row-${d.id}">
@@ -136,15 +140,16 @@ function renderDonationsSection(donations) {
       <td>${statusBadge(d.status)}</td>
       <td>
         <div class="table-actions">
-          ${d.status === 'Pending'   ? `<button class="btn btn-success btn-sm" onclick="updateDonation(${d.id},'approve')">Accept</button><button class="btn btn-danger btn-sm" onclick="updateDonation(${d.id},'reject')">Reject</button>` : ''}
-          ${d.status === 'Accepted'  ? `<button class="btn btn-primary btn-sm" onclick="updateDonation(${d.id},'finalize')">Finalize</button>` : ''}
+          ${isCharity && d.status === 'Pending'   ? `<button class="btn btn-success btn-sm" onclick="updateDonation(${d.id},'approve')">Accept</button><button class="btn btn-danger btn-sm" onclick="updateDonation(${d.id},'reject')">Reject</button>` : ''}
+          ${isCharity && d.status === 'Accepted'  ? `<button class="btn btn-primary btn-sm" onclick="updateDonation(${d.id},'finalize')">Finalize</button>` : ''}
+          ${isDonor && (d.status === 'Pending' || d.status === 'Accepted')  ? `<button class="btn btn-danger btn-sm" onclick="updateDonation(${d.id},'cancel')">Cancel</button>` : ''}
         </div>
       </td>
     </tr>`).join('');
 
   return `
     <div class="detail-card">
-      <div class="detail-card-title">Donations (${donations.length})</div>
+      <div class="detail-card-title">${sectionTitle} (${donations.length})</div>
       <div class="table-wrapper">
         <table class="data-table">
           <thead><tr><th>Donor</th><th>Units</th><th>Note</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>

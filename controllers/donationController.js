@@ -33,7 +33,6 @@ const listDonationsByRequest = async (req, res) => {
   try {
     const [[request]] = await pool.execute('SELECT id, charity_id FROM requests WHERE id = ?', [requestId]);
     if (!request) return res.status(404).json({ error: 'Request not found' });
-    if (request.charity_id !== req.userId) return res.status(403).json({ error: 'Forbidden' });
 
     const [rows] = await pool.execute(
       `SELECT d.id, d.user_id, d.donated_units, d.description,
@@ -174,7 +173,7 @@ const cancelDonation = async (req, res) => {
     const [[donation]] = await pool.execute('SELECT id, user_id, status FROM donations WHERE id = ?', [id]);
     if (!donation) return res.status(404).json({ error: 'Donation not found' });
     if (donation.user_id !== req.userId) return res.status(403).json({ error: 'Forbidden' });
-    if (donation.status !== 'Pending') return res.status(409).json({ error: 'Only Pending donations can be cancelled' });
+    if (donation.status !== 'Pending' && donation.status !== 'Accepted') return res.status(409).json({ error: 'Only Pending or Accepted donations can be cancelled' });
 
     await pool.execute('UPDATE donations SET status = "Cancelled" WHERE id = ?', [id]);
     res.json({ id: parseInt(id), status: 'Cancelled' });

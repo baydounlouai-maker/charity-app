@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('filterSearch').value   = '';
     loadEvents();
   });
+  document.getElementById('filterSearch').addEventListener('keydown', e => {
+    if (e.key === 'Enter') loadEvents();
+  });
 });
 
 async function loadEvents() {

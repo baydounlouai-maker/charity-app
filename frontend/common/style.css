@@ -37,6 +37,7 @@
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --text-xxs:   0.675rem;
   --text-xs:   0.75rem;
   --text-sm:   0.875rem;
   --text-base: 1rem;
@@ -389,6 +390,11 @@ h4 { font-size: var(--text-lg);  font-weight: var(--fw-semi); }
 .dropdown-item.danger { color: var(--clr-danger); }
 .dropdown-item.danger:hover { background: var(--clr-danger-bg); }
 .dropdown-divider { border: none; border-top: 1px solid var(--clr-border); margin: var(--sp-2) 0; }
+.dropdown-label {
+  font-size: var(--text-xxs); font-weight: var(--fw-semi);
+  color: var(--clr-text-muted); text-transform: uppercase; letter-spacing: .05em;
+  padding: var(--sp-2) var(--sp-4); margin-top: var(--sp-2);
+}
 
 /* ============================================================
    FOOTER

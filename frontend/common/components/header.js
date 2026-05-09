@@ -21,6 +21,7 @@ function renderHeader(activePage = '') {
   let userSection;
   if (user) {
     const isAdminOnly = user.roles.includes('Admin') && !user.roles.includes('Charity') && !user.roles.includes('Donor');
+    const roleLabel = `<span class="dropdown-label">${user.roles.join(', ')}</span>`;
     const profileLinks = isAdminOnly ? '' : `
       <a href="/pages/addresses/addresses.html" class="dropdown-item">My Addresses</a>
       <a href="/pages/contacts/contacts.html" class="dropdown-item">My Contacts</a>
@@ -39,7 +40,7 @@ function renderHeader(activePage = '') {
           ${displayName} <span class="caret">▾</span>
         </button>
         <div class="user-dropdown" id="userDropdown">
-          ${charityLinks}${profileLinks}
+          ${roleLabel}${charityLinks}${profileLinks}
           <button class="dropdown-item danger" id="logoutBtn">Log Out</button>
         </div>
       </div>`;
