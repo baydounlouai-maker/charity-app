@@ -41,8 +41,9 @@ app.use(express.static(FRONTEND_DIR));
 async function testDbConnection() {
   try {
     await pool.execute('SELECT 1');
-  } catch {
-    throw new Error('Database unreachable');
+  } catch (e) {
+    console.error('Database connection failed:', e.message);
+    throw new Error('Database connection failed');
   }
 }
 
