@@ -1,17 +1,20 @@
 const bcrypt = require('bcryptjs');
 const pool   = require('./config/db');
+const { default: CONFIG } = require('./config/config');
 
-const DEMO_PASSWORD = 'demo123';
+const ADMIN_USERNAME = CONFIG.ADMIN_USERNAME;
+const ADMIN_PASSWORD = CONFIG.ADMIN_PASSWORD;
+const DEMO_PASSWORD = CONFIG.DEMO_USERS_PASSWORD;
 
 async function seed() {
   /* ── Guard: only run once ──────────────────────────────── */
   const [existing] = await pool.execute(
     'SELECT id FROM users WHERE username = ?',
-    ['admin']
+    [ADMIN_USERNAME]
   );
   if (existing.length > 0) return;
 
-  const hashed      = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'admin123', 10);
+  const hashed      = await bcrypt.hash(ADMIN_PASSWORD, 10);
   const demoHashed  = await bcrypt.hash(DEMO_PASSWORD, 10);
 
   const [[adminRole]]   = await pool.execute("SELECT id FROM roles WHERE name = 'Admin'");
@@ -20,10 +23,10 @@ async function seed() {
 
   /* ── Admin ─────────────────────────────────────────────── */
   const adminId = await insertUser({
-    username: 'admin',
+    username: ADMIN_USERNAME,
     password: hashed,
   }, adminRole.id);
-  console.log('[seed] admin created  →  username: admin  password: admin123');
+  console.log('[seed] admin created  →  username: ' + ADMIN_USERNAME + '  password: ' + ADMIN_PASSWORD);
 
   /* ── Charities ──────────────────────────────────────────── */
   const hopeId = await insertUser({
